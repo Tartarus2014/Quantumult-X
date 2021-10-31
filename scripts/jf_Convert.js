@@ -234,6 +234,7 @@ function dateFormat(cellval) {
 function tool() {
     const isSurge = typeof $httpClient != "undefined";
     const isQuanX = typeof $task != "undefined";
+    const isLoon = typeof $loon != "undefined";
     const node = (() => {
         if (typeof require == "function") {
             const request = require("request");
@@ -243,7 +244,7 @@ function tool() {
         }
     })();
     const notify = (title, subtitle, content, open_url) => {
-        if (isSurge) {
+        if (isSurge && !isLoon) {
             let opts = {};
             if (open_url) opts["url"] = open_url;
             if (JSON.stringify(opts) == "{}") {
